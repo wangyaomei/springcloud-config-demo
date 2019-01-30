@@ -4,7 +4,7 @@
     - dev
 --- 
 server: 
-  port: 8201
+  port: 8211
 spring: 
   profiles: dev #开发环境
   application: 
@@ -17,7 +17,7 @@ eureka:
 
 --- 
 server: 
-  port: 8202
+  port: 8212
 spring: 
   profiles: test #开发环境
   application: 
