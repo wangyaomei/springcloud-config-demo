@@ -2,6 +2,11 @@
   profiles: 
     active: 
     - dev
+spring:  
+  cloud: 
+    config:   
+      profile: test #本次访问的配置项
+     
 --- 
 server: 
   port: 8211
