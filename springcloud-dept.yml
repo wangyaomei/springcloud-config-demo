@@ -1,0 +1,99 @@
+spring: 
+  profiles: 
+    active: 
+    - dev
+
+---
+server: 
+  port: 8001
+mybatis: 
+  config-location: classpath:mybatis/mybatis-config.xml
+  type-aliases-package: com.ultrapower.entity  #实体类所在的文件
+  mapper-locations:
+    - classpath:mybatis/mapper/**/*.xml
+
+logging:
+  level: 
+     com.ultrapower.dao.DeptDao: debug  #DeptDao里的sql可以打印出来,记录在日志里
+     org.springframework.web: DEBUG
+  file: D:/temp/test8001.log
+spring: 
+  profiles: dev
+  application:
+    name: springcloud-dept-dev  #微服务的名字
+  datasource: 
+    type: com.alibaba.druid.pool.DruidDataSource  #默认使用的连接池是：org.apache.tomcat.jdbc.pool.DataSource
+    driver-class-name: org.gjt.mm.mysql.Driver
+    url: jdbc:mysql://localhost:3306/springcloud
+    username: root
+    password: root
+    dbcp2:
+      min-idle: 5       #数据库连接池的最小维持连接数
+      initial-size: 5   #初始化连接数
+      max-total: 5      #最大连接数
+      max-wait-millis: 200 #等待连接获取的最大超时时间
+      
+eureka: 
+  client: #客户端注册进入eureka服务列表内
+    service-url: 
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka,http://eureka7003.com:7003/eureka
+      #集群配置，注册进3个eureka服务里面
+      #单机：defaultZone: http://localhost:7001/eureka
+  instance: 
+    instance-id: springcloud-dept8001  #自定义服务名称，默认为ip对应的域名：微服务的名字：端口号
+    prefer-ip-address: true #访问路径可以显示ip，悬浮在springcloud-dept8001，
+                            #左下角可以看到该服务的ip和端口号，如：192.168.30.33：8001/info
+info: #当点击192.168.30.33：8001/info的时候，让其以json格式显示出这些内容
+  app.name: springcloud-demo-provider-dept-8001
+  company.name: www.baidu.com
+  build.groupId: $project.groupId$  #这些key、value都可以自定义,project.groupId表示动态获取该项目的groupId
+  build.artifactId: $project.artifactId$ #开头和结尾用$，这是在总工程的pom-build---delimit中配置的
+  build.version: $project.version$   #一定要在工程中配置build。详情可以去pom中看下
+  
+---
+server: 
+  port: 8001
+mybatis: 
+  config-location: classpath:mybatis/mybatis-config.xml
+  type-aliases-package: com.ultrapower.entity  #实体类所在的文件
+  mapper-locations:
+    - classpath:mybatis/mapper/**/*.xml
+
+logging:
+  level: 
+     com.ultrapower.dao.DeptDao: debug  #DeptDao里的sql可以打印出来,记录在日志里
+     org.springframework.web: DEBUG
+  file: D:/temp/test8001.log
+spring: 
+  profiles: test
+  application:
+    name: springcloud-dept-test  #微服务的名字
+  datasource: 
+    type: com.alibaba.druid.pool.DruidDataSource  #默认使用的连接池是：org.apache.tomcat.jdbc.pool.DataSource
+    driver-class-name: org.gjt.mm.mysql.Driver
+    url: jdbc:mysql://localhost:3306/springcloud
+    username: root
+    password: root
+    dbcp2:
+      min-idle: 5       #数据库连接池的最小维持连接数
+      initial-size: 5   #初始化连接数
+      max-total: 5      #最大连接数
+      max-wait-millis: 200 #等待连接获取的最大超时时间
+      
+eureka: 
+  client: #客户端注册进入eureka服务列表内
+    service-url: 
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka,http://eureka7003.com:7003/eureka
+      #集群配置，注册进3个eureka服务里面
+      #单机：defaultZone: http://localhost:7001/eureka
+  instance: 
+    instance-id: springcloud-dept8001  #自定义服务名称，默认为ip对应的域名：微服务的名字：端口号
+    prefer-ip-address: true #访问路径可以显示ip，悬浮在springcloud-dept8001，
+                            #左下角可以看到该服务的ip和端口号，如：192.168.30.33：8001/info
+info: #当点击192.168.30.33：8001/info的时候，让其以json格式显示出这些内容
+  app.name: springcloud-demo-provider-dept-8001
+  company.name: www.baidu.com
+  build.groupId: $project.groupId$  #这些key、value都可以自定义,project.groupId表示动态获取该项目的groupId
+  build.artifactId: $project.artifactId$ #开头和结尾用$，这是在总工程的pom-build---delimit中配置的
+  build.version: $project.version$   #一定要在工程中配置build。详情可以去pom中看下
+  
