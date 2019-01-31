@@ -1,4 +1,4 @@
-spring: 
+﻿spring: 
   profiles: 
     active: 
     - dev
@@ -71,7 +71,7 @@ spring:
   datasource: 
     type: com.alibaba.druid.pool.DruidDataSource  #默认使用的连接池是：org.apache.tomcat.jdbc.pool.DataSource
     driver-class-name: org.gjt.mm.mysql.Driver
-    url: jdbc:mysql://localhost:3306/springcloud
+    url: jdbc:mysql://localhost:3306/springcloud02
     username: root
     password: root
     dbcp2:
