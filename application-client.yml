@@ -22,7 +22,7 @@ server:
 spring: 
   profiles: test #开发环境
   application: 
-    name: springcloud-demo-config-client-test
+    name: springcloud-demo-config-client-test-1
 eureka: 
   client: #客户端注册进入eureka服务列表内
     service-url: 
